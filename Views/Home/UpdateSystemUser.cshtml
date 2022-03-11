@@ -1,0 +1,68 @@
+﻿@model ArchimydesWeb.ViewModels.UpdateUserViewModel
+
+
+@{
+    ViewData["Title"] = "UpdateSystemUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="col-10 mb-5">
+            <div class="float-left mr-3">
+                <a asp-action="SystemUsers" asp-controller="Home" class="btn btn-warning float-left">List of System Users</a>
+            </div>
+            <div class="float-left">
+                @if (ViewBag.Message != null)
+                {
+                    <span class="alert-success">@ViewBag.Message</span>
+                }
+            </div>
+        </div>
+
+
+
+        <div class="col-10 mb-5">
+            <form asp-action="UpdateSystemUser" asp-controller="Home" method="post">
+                @Html.AntiForgeryToken()
+                <br />
+                <input asp-for="UserID" hidden="hidden" />
+                @*<label>Image</label>
+                    <input asp-for="Image" type="file" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>*@
+                <br />
+                <label>Enter First Name</label>
+                <input asp-for="FirstName" placeholder="Enter First Name" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <br />
+                <label>Enter Middle Name</label>
+                <input asp-for="MiddleName" placeholder="Enter MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+                <br />
+                <label>Enter Last Name</label>
+                <input asp-for="LastName" placeholder="Enter LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+                <br />
+                <label>Enter Email</label>
+                <input asp-for="Email" placeholder="Enter Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <br />
+                <label>Enter Phone Number</label>
+                <input asp-for="PhoneNumber" placeholder="Enter Phone Number" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                <br />
+               
+                <label>Enter Company</label>
+                <input asp-for="CompanyName" placeholder="Enter Company Name" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+              
+                <input type="submit" value="Update" class="btn btn-info" />
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+

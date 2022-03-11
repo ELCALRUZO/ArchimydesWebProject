@@ -1,0 +1,70 @@
+﻿@model ArchimydesWeb.ViewModels.HoldDisplayRoleViewModel
+
+@{
+    ViewData["Title"] = "Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var indx = 0;
+}
+
+<div class="card-body">
+    <h2 class="mb-2">
+        Roles
+    </h2>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="col-10 mb-6">
+                <form asp-action="Roles" asp-controller="Home" asp-area="SystemSetUp" method="get">
+                    <div class="float-left mr-3">
+                        <input name="searchText" placeholder="Enter Role Name" class="form-control" />
+                    </div>
+                    <div class="float-left">
+                        <input type="submit" value="Search" class="btn btn-info float-left mr-3" />
+                        <a asp-action="CreateRole" asp-controller="Home" class="btn btn-warning float-left">Create New Role</a>
+                    </div>
+                </form>
+            </div>
+
+            @if (Model != null && Model.HoldAllRoles.Count() > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>
+                                Name
+                            </th>
+                            <th>IsActive</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.HoldAllRoles)
+                        {
+                            indx++;
+                            <tr>
+                                <td>
+                                    @indx
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoleName)
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                <td>
+                                    <a asp-action="UpdateRole" asp-route-id="@item.RoleID">Edit</a> |
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            }
+            else
+            {
+                <h2>No Available Role(s)</h2>
+            }
+        </div>
+    </div>
+</div>
